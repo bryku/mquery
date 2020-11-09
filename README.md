@@ -1,0 +1,2 @@
+# mquery
+Compact jQuery alternative
