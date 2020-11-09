@@ -55,7 +55,13 @@ _('#home').attr('href','index.html');
 <a id="home" href="index.html">Go Home</a>
 ```
 **Note:** _().attr('value') can get and set form values unlike the traditional **.attributes['value']**.
-**Note:** _().attr('style') can get and set styles. It is equal to **.cssText**.
+    * Vanilla Js: document.querySelector().value
+    * jQuery: $().val()
+    * mQuery _('input').attr('value');
+    * It was incorporated in attr to save file size.
+**Note:** _().attr('style') can get and set styles.
+    * Html: style=""
+    * Vanilla Js: document.querySelector().cssText
 							
 ### HTML
 
@@ -186,169 +192,77 @@ _('#msg').classContains('background-black');
 ```
 
 ### Style
+```
+<div id="msg">Hello World</div>
 
+_('#msg').style('color','red');
+<div id="msg" style="color:red">Hello World</div>
 
-									_('#msg').classContains('txt-green');<br>
-									// true<br>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="page">
-						<div class="card layout-100-auto" style="overflow: hidden; background:#928fe6;">
-							<div class="box">
-								<h3>Style</h3>
-							</div>
-							<div class="box" style="background:#514f80; overflow: auto;">
-								<p>_().style(STRING, OPTIONAL_STRING)</p>
-								<hr>
-								<p>
-									&#60;span id="msg" style="color: red"&#62;<br>
-									&nbsp; &nbsp;Hello World<br>
-									&#60;/span&#62;
-								</p>
-								<p>
-									_('#msg').style('color');<br>
-									// red
-								</p>
-								<p>
-									_('#msg').style('color','green');<br>
-									&#60;span id="msg" style="color: green"&#62;<br>
-									&nbsp; &nbsp;Hello World<br>
-									&#60;/span&#62;
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="page">
-						<div class="card layout-100-auto" style="overflow: hidden; background:#928fe6;">
-							<div class="box">
-								<h3>Size</h3>
-							</div>
-							<div class="box" style="background:#514f80; overflow: auto;">
-								<p>
-									_().width();<br>
-									_().height();<br>
-								</p>
-								<hr>
-								<p>
-									&#60;div id="msg" style="width: 200px; height: 100px;"&#62;<br>
-									&nbsp; &nbsp;Hello World<br>
-									&#60;/div&#62;
-								</p>
-								<p>
-									_('#msg').width();<br>
-									// 200 
-								</p>
-								<p>
-									_('#msg').height();<br>
-									// 100 
-								</p>
-								<p>
-									Note: This returns offsetWidth/offsetHeight, so it works with grid, and other auto sizing styles.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="page">
-						<div class="card layout-100-auto" style="overflow: hidden; background:#928fe6;">
-							<div class="box">
-								<h3>Event</h3>
-							</div>
-							<div class="box" style="background:#514f80; overflow: auto;">
-								<p>
-									_().event(STRING, FUNCTION);
-								</p>
-								<hr>
-								<p>
-									&#60;button id="btn"&#62;<br>
-									&nbsp; &nbsp;Click Me<br>
-									&#60;/button&#62;
-								</p>
-								<p>
-									_('#btn').event('click',function(event){
-										console.log(event);
-									});<br>
-								</p>
-								<p>
-									Note: This is a short hand for "addEventListener()".
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="page">
-						<div class="card layout-100-auto" style="overflow: hidden; background:#928fe6;">
-							<div class="box">
-								<h3>Ajax</h3>
-							</div>
-							<div class="box" style="background:#514f80; overflow: auto;">
-								<p>
-									_ajax(URL, CALLBACK, ERROR, START, DONE);
-								</p>
-								<hr>
-								<p>
-									_ajax('https://www.google.com',<br>
-									&nbsp; &nbsp;function(text){console.log(text)},<br>
-									&nbsp; &nbsp;function(err){console.log('ajax error')},<br>
-									&nbsp; &nbsp;function(){console.log('ajax has started')},<br>
-									&nbsp; &nbsp;function(){console.log('ajax has stopped')},<br>
-									);
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="page">
-						<div class="card layout-100-auto" style="overflow: hidden; background:#928fe6;">
-							<div class="box">
-								<h3>Ajax</h3>
-							</div>
-							<div class="box" style="background:#514f80; overflow: auto;">
-								<p>
-									_().ajax(STRING)
-								</p>
-								<hr>
-								<p>
-									&#60;div id="msg"&#62;Loading...&#60;/div&#62;
-								</p>
-								<p>
-									_('#msg').ajax('msg.html');<br>
-									&#60;div id="msg"&#62;Hello World!&#60;/div&#62;
-								</p>
-								<p>
-									Source: <a href="msg.html">msg.html</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="page">
-						<div class="card layout-100-auto" style="overflow: hidden; background:#928fe6;">
-							<div class="box">
-								<h3>Form Parse</h3>
-							</div>
-							<div class="box" style="background:#514f80; overflow: auto;">
-								<p>
-									_().formParse()
-								</p>
-								<hr>
-								<p>
-								&#60;form id="form"&#62;<br>
-								&nbsp; &nbsp;&#60;input name="firstName" value="John"&#62;<br>
-								&nbsp; &nbsp;&#60;input name="lastName" value="Doe"&#62;<br>
-								&nbsp; &nbsp;&#60;input name="email" value="johndoe@email.com"&#62;<br>
-								&nbsp; &nbsp;&#60;div&#62;<br>
-								&nbsp; &nbsp;&nbsp; &nbsp;&#60;input name="password" value="orangecookies"&#62;<br>
-								&nbsp; &nbsp;&#60;/div&#62;<br>
-								&#60;/form&#62;<br>
-								</p>
-								<p>
-									_('#form').formParse();<br>
-									/*{<br>
-									&nbsp; &nbsp;firstName: "John",<br>
-									&nbsp; &nbsp;lastName: "Doe",<br>
-									&nbsp; &nbsp;emailName: "johndoe@email.com",<br>
-									&nbsp; &nbsp;password: "orangecookies",<br>
-									}*/
-								</p>
-							</div>
-						</div>
-					</div>
+_('#msg').style('color');
+// red
+```
+### Size (width & height)
+
+```
+<div id="msg" style="width: 200px;">Hello World</div>
+_('#msg').size().width;
+// 200
+
+<div id="msg" style="width: 200px; padding-left: 10px">Hello World</div>
+_('#msg').size().width;
+// 210
+
+<div id="msg" style="width: 200px; height: 18px; padding-left: 10px">Hello World</div>
+_('#msg').size()
+// {width: 210, height: 18}
+```
+
+**Note:** width() and height() return the physical size of the element and not the style. This is useful when needing the size of auto sizing elements like grid, img, and other inline-block elements;
+    * Vanilla Js: document.querySelector().offsetHeight;
+    * jQuery: $().height;
+    * mQuery: _().height;
+
+### Event
+
+<button id="btn">Click Me</button>
+_('#btn').event('click', function(){
+    console.log('You clicked me');
+});
+
+**Note:** This is shorthand for Vanilla Js's addEventListener.
+
+### Update
+
+msg.html: 'Hello World'
+index.html: '<div id="msg">Loading...</div>'
+_('msg').update('msg.html');
+<div id="msg">Hello World</div>
+
+### Ajax
+
+_ajax(URL, CALLBACK, ERROR, START, DONE);
+_ajax('msg', 
+function(text){console.log(text)},
+function(err){console.log('there was an error')},
+function(){console.log('ajax has started')},
+function(){console.log('ajax has ended')});
+
+### Form Parse
+
+<form id="form">
+	<input name="firstName" value="John">
+	<input name="lastName" value="Doe">
+	<input name="email" value="johndoe@email.com">
+	<div>
+		<input name="password" value="orangeCookies">
+	</div>
+</form>
+_('#form').formParse();
+/*
+{
+	'firstName': 'John',
+	'lastName': 'Doe',
+	'email': 'johndoe@email.com',
+	'password': 'orangeCookies',
+}
+*/
