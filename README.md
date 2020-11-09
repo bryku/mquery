@@ -237,22 +237,26 @@ _('#btn').event('click', function(){
 
 ### Update
 
+```
 msg.html: 'Hello World'
 index.html: '<div id="msg">Loading...</div>'
 _('msg').update('msg.html');
 <div id="msg">Hello World</div>
+```
 
 ### Ajax
-
+```
 _ajax(URL, CALLBACK, ERROR, START, DONE);
 _ajax('msg', 
 function(text){console.log(text)},
 function(err){console.log('there was an error')},
 function(){console.log('ajax has started')},
 function(){console.log('ajax has ended')});
+```
 
 ### Form Parse
 
+```
 <form id="form">
 	<input name="firstName" value="John">
 	<input name="lastName" value="Doe">
@@ -270,3 +274,4 @@ _('#form').formParse();
 	'password': 'orangeCookies',
 }
 */
+```
