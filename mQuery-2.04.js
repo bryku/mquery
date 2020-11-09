@@ -1,4 +1,4 @@
-// micro framework (mico jquery clone 4% of size) - drburnett 2020
+// micro framework (mico jquery alternative 4% of size) - drburnett 2020
 var _version = 2.04;
 function _(q){
 	let l = document.querySelectorAll(q);
@@ -19,14 +19,9 @@ function _loop(f,a){
 	else{return this}
 }
 var _proto = {
-	height: function(){
+	size: function(){
 		return this._loop((e,a)=>{
-			return e.height
-		},arguments)
-	},
-	width: function(){
-		return this._loop((e,a)=>{
-			return e.width
+			return {width: e.width, height: e.height}
 		},arguments)
 	},
 	click: function(){
@@ -126,7 +121,7 @@ var _proto = {
 			e.addEventListener(a[0], a[1])
 		},arguments)
 	},
-	ajax: function(u){
+	update: function(u){
 		_ajax(u, this._query)
 	},
 	formParse: function(u){
