@@ -5,7 +5,7 @@ function _(q){
 	
 	if(q === 'window'){l[0] = window}
 	else if(q === 'document'){l[0] = document}
-	else if(q === 'body'){l[0] = body}
+	else if(q === 'body'){l[0] = document.body}
 	
 	return {_nodelist: l, _query: q, _loop: _loop,..._proto}
 }
