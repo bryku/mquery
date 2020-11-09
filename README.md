@@ -55,13 +55,16 @@ _('#home').attr('href','index.html');
 <a id="home" href="index.html">Go Home</a>
 ```
 **Note:** _().attr('value') can get and set form values unlike the traditional **.attributes['value']**.
-    * Vanilla Js: document.querySelector().value
-    * jQuery: $().val()
-    * mQuery _('input').attr('value');
-    * It was incorporated in attr to save file size.
+
+* Vanilla Js: document.querySelector().value
+* jQuery: $().val()
+* mQuery _('input').attr('value');
+* It was incorporated in attr to save file size.
+
 **Note:** _().attr('style') can get and set styles.
-    * Html: style=""
-    * Vanilla Js: document.querySelector().cssText
+
+* Html: style=""
+* Vanilla Js: document.querySelector().cssText
 							
 ### HTML
 
