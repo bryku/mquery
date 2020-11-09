@@ -221,9 +221,10 @@ _('#msg').size()
 ```
 
 **Note:** width() and height() return the physical size of the element and not the style. This is useful when needing the size of auto sizing elements like grid, img, and other inline-block elements;
-    * Vanilla Js: document.querySelector().offsetHeight;
-    * jQuery: $().height;
-    * mQuery: _().height;
+
+* Vanilla Js: document.querySelector().offsetHeight;
+* jQuery: $().height;
+* mQuery: _().height;
 
 ### Event
 
