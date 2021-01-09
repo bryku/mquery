@@ -1,5 +1,5 @@
 // micro framework (mico jquery alternative 4% of size) - drburnett 2020
-var _version = 2.04;
+var _version = 2.05;
 function _(q){
 	let l = document.querySelectorAll(q);
 	
