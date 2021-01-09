@@ -1,5 +1,5 @@
-// micro framework (mico jquery alternative 4% of size) - drburnett 2021-01-08 (yymmdd)
-var _version = 2.05;
+// micro framework (mico jquery alternative 4% of size) - drburnett 2020
+var _version = 2.04;
 function _(q){
 	let l = document.querySelectorAll(q);
 	
@@ -66,9 +66,8 @@ var _proto = {
 	},
 	html: function(){
 		return this._loop((e,a)=>{
-			if(a[0] === ''){e.innerHTML = ''}
-			else if(a[0]){e.innerHTML = a[0]}
-			return e.innerHTML
+			if(!a[0]){return e.innerHTML}
+      e.innerHTML = a[0]
 		},arguments)
 	},
 	htmlAppend: function(){
