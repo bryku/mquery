@@ -66,20 +66,6 @@ _('#home').attr('href','index.html');
 * Html: style=""
 * Vanilla Js: document.querySelector().cssText
 
-
-### Attribute Bool (mquery 2.05)
-
-```
-<a id="home" href="index.html">Go Home</a>
-
-_('#home').attrBool('href','index.html','home.html','error.html');
-// <a id="home" href="home.html">Go Home</a>
-
-<a id="home" href="index.html">Go Home</a>
-
-_('#home').attrBool('href','welcome.html','home.html','error.html');
-// <a id="home" href="error.html">Go Home</a>
-```
 							
 ### HTML
 
