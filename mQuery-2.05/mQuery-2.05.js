@@ -15,7 +15,7 @@ function _loop(f,a){
 		r = f(e, a, i, l);
 	});
 
-	if(r !== 'undefined'){return r}
+	if(r !== 'undefined' && r !== undefined){return r}
 	else{return this}
 }
 var _proto = {
