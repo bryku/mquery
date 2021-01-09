@@ -66,6 +66,47 @@ _('#home').attr('href','index.html');
 * Html: style=""
 * Vanilla Js: document.querySelector().cssText
 
+### AttributeRemove (2.05+)
+
+```
+<details id="details" open>
+	<summary>Learn More</summary>
+	<p>Bleep Bloop</p>
+</details>
+
+_('#details').attrRemove('open');
+
+<details id="details">
+	<summary>Learn More</summary>
+	<p>Bleep Bloop</p>
+</details>
+```
+
+
+### AttributeToggle (2.05+)
+
+```
+<details id="details" open>
+	<summary>Learn More</summary>
+	<p>Bleep Bloop</p>
+</details>
+
+_('#details').attrToggle('open');
+
+<details id="details">
+	<summary>Learn More</summary>
+	<p>Bleep Bloop</p>
+</details>
+
+_('#details').attrToggle('open');
+
+<details id="details" open>
+	<summary>Learn More</summary>
+	<p>Bleep Bloop</p>
+</details>
+
+```
+
 							
 ### HTML
 
