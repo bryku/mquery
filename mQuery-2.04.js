@@ -66,8 +66,8 @@ var _proto = {
 	},
 	html: function(){
 		return this._loop((e,a)=>{
-			if(!a[0]){return e.innerHTML}
-			e.innerHTML = a[0]
+			if(a[0]){e.innerHTML = a[0]}
+			return e.innerHTML
 		},arguments)
 	},
 	htmlAppend: function(){
