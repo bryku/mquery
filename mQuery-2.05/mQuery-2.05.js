@@ -117,6 +117,17 @@ var _proto = {
 			else{e.setAttribute(a[0],a[1])}
 		},arguments)
 	},
+	attrRemove: function(){
+		return this._loop((e, a)=>{
+			if(a[0]){e.removeAttribute(a[0])}
+		},arguments)
+	},
+	attrToggle: function(){
+		return this._loop((e, a)=>{
+			if(typeof e.getAttribute(a[0]) != 'undefined'){e.removeAttribute(a[0])}
+			else{e.setAttribute(a[0],'')}
+		},arguments)
+	},
 	event: function(){
 		return this._loop((e, a)=>{
 			e.addEventListener(a[0], a[1])
