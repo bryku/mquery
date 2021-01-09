@@ -241,7 +241,7 @@ _('#btn').event('click', function(){
 ```
 msg.html: 'Hello World'
 index.html: '<div id="msg">Loading...</div>'
-_('msg').update('msg.html');
+_('#msg').update('msg.html');
 <div id="msg">Hello World</div>
 ```
 
