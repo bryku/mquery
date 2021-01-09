@@ -1,4 +1,4 @@
-// micro framework (mico jquery alternative 4% of size) - drburnett 2020
+// micro framework (mico jquery alternative 4% of size) - drburnett 2021-01-08 (yymmdd)
 var _version = 2.05;
 function _(q){
 	let l = document.querySelectorAll(q);
