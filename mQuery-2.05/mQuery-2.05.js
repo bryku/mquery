@@ -109,9 +109,9 @@ var _proto = {
 	},
 	attr: function(){
 		return this._loop((e, a)=>{
-			if(!a[1] && a[0] == 'value'){return e.value}
-			else if(!a[1] && a[0] == 'style'){return e.style.cssText}
-			else if(!a[1]){return e.getAttribute(a[0])}
+			if(!a[1] && a[1] != '' && a[0] == 'value'){return e.value}
+			else if(!a[1] && a[1] != '' && a[0] == 'style'){return e.style.cssText}
+			else if(!a[1] && a[1] != ''){return e.getAttribute(a[0])}
 			else if(a[0] == 'value'){e.value = a[1]}
 			else if(a[0] == 'style'){e.style.cssText = a[1]}
 			else{e.setAttribute(a[0],a[1])}
