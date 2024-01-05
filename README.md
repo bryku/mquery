@@ -1,319 +1,188 @@
-# mquery
-Compact jQuery alternative under 3kB.
+# mQuery 
 
-### Overview: Common Uses
+mQuery is a library that focuses on *dom* or *document* manipulation.
+It is very similar to jQuery and in many respects it is a slimmed down version of it, but at 4% the size. 
 
-Prototypes apply to all matching queries.
+* jQuery: 87.6kB
+* mQuery: 2.8kB
 
-```
-<ul id="list">
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-</ul>
-
-_('#list').classAdd('text-red');
-
-<ul id="list">
-  <li class="text-red">a</li>
-  <li class="text-red">b</li>
-  <li class="text-red">c</li>
-</ul>
-```
+mQuery can achieve this smaller size, by giving up a lot of the backwards compatibility that is rarely needed anymore.
+mQuery also gives up some of the features of jQuery and only focuses on what is commonly used.
+However, it does have a few new features that jQuery doesn't. 
 
 
-### ForEach
-If an mQuery prototype doesn't exist, you can still use traditional JS using forEach.
+# .size()
+
+Size returns and object describing the size of the element.
 
 ```
-<ul id="list">
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-</ul>
-
-_('#list > *').forEach(function(e){
-  e.classList.add('text-red');
-});
-		
-<ul id="list">
-  <li class="text-red">a</li>
-  <li class="text-red">b</li>
-  <li class="text-red">c</li>
-</ul>
+    console.log(
+        _('body').size()
+    ) 
+    // output: {w: 100, h: 100}
 ```
 
-### Attribute
+# .click()
+
+Click triggers and click event listener.
 
 ```
-<a id="home" href="home.html">Go Home</a>
-
-_('#home').attr('href');
-// home.html
-
-_('#home').attr('href','index.html');
-<a id="home" href="index.html">Go Home</a>
-```
-**Note:** _().attr('value') can get and set form values unlike the traditional **.attributes['value']**.
-
-* Vanilla Js: document.querySelector().value
-* jQuery: $().val()
-* mQuery _('input').attr('value');
-* It was incorporated in attr to save file size.
-
-**Note:** _().attr('style') can get and set styles.
-
-* Html: style=""
-* Vanilla Js: document.querySelector().cssText
-
-### AttributeRemove (2.05+)
-
-```
-<details id="details" open>
-	<summary>Learn More</summary>
-	<p>Bleep Bloop</p>
-</details>
-
-_('#details').attrRemove('open');
-
-<details id="details">
-	<summary>Learn More</summary>
-	<p>Bleep Bloop</p>
-</details>
+    _('button').click()
 ```
 
+# .classAdd(STRING)
 
-### AttributeToggle (2.05+)
-
-```
-<details id="details" open>
-	<summary>Learn More</summary>
-	<p>Bleep Bloop</p>
-</details>
-
-_('#details').attrToggle('open');
-
-<details id="details">
-	<summary>Learn More</summary>
-	<p>Bleep Bloop</p>
-</details>
-
-_('#details').attrToggle('open');
-
-<details id="details" open>
-	<summary>Learn More</summary>
-	<p>Bleep Bloop</p>
-</details>
+Add a classes to any element.
 
 ```
-
-							
-### HTML
-
-```
-<div id="msg">Hello World</div>
-					
-_('#msg').html();
-// Hello World
-
-_('#msg').html('Hello Dave');
-<div id="msg">Hello Dave</div>
+    _('div').classAdd('bg-red', 'txt-black')
 ```
 
-### HTML Append
+# .classRemove(STRING)
+
+Remove classes from any element.
 
 ```
-<ul id="list">
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-</ul>
-					
-_('#list').htmlAppend('<li>d</li>');
-<ul id="list">
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-  <li>d</li>
-</ul>
+    _('div').classRemove('bg-red', 'txt-black')
 ```
 
-### HTML Prepend
+# .classToggle(STRING)
+
+Toggles a class on and off.
 
 ```
-<ul id="list">
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-</ul>
-					
-_('#list').htmlPrepend('<li>d</li>');
-<ul id="list">
-  <li>d</li>
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-</ul>
+    _('div').classToggle('bg-red');
 ```
 
-### Html Bool
+# .classContains(STRING)
+
+Returns true if element contains a class and returns false if it doesn't.
 
 ```
-<div id="msg">Loading...</div>
-
-var isLoggedIn = true;
-_('#msg').htmlBool(isLoggedIn, 'Hello Dave!', 'Please Signin.');
-<div id="msg">Hello Dave!</div>
-
-var isLoggedIn = false;
-_('#msg').htmlBool(isLoggedIn, 'Hello Dave!', 'Please Signin.');
-<div id="msg">Please Signin.</div>
-```
-### HTML Replace
-
-```
-<div id="msg">Hello World</div>
-
-_('#msg').htmlReplace('world','Dave');
-<div id="msg">Hello Dave</div>
-
-_('#msg').htmlReplace('/l/gmi','L');
-<div id="msg">HeLLo Dave</div>
+    _('div').classAdd('bg-red');
+    _('div').classContains('bg-red') // true
+    _('div').classContains('bg-blue') // false
 ```
 
-### Class Add
+# .style(STRING, STRING/OPTIONAL)
+
+Add css styles to any element.
 
 ```
-<div id="msg">Hello World</div>
-
-_('#msg').classAdd('text-red');
-<div id="msg" class="text-red">Hello World</div>
+    _('div').style('background', 'red');
+    _('div').style('background'); // 'red'
 ```
 
-### Class Remove
+# .html(STRING/OPTIONAL)
+
+Update the HTML of an element.
 
 ```
-<div id="msg" class="text-red background-black">Hello World</div>
-
-_('#msg').classRemove('text-red');
-<div id="msg" class="background-black">Hello World</div>
+    _('div').html('Hello World');
+    _('div').html(); // 'Hello World'
 ```
 
-### Class Toggle
+# .htmlAppend(STRING)
+
+Add HTML to the end of an HTML element.
 
 ```
-<div id="msg" class="text-red background-black">Hello World</div>
-
-_('#msg').classToggle('text-red');
-<div id="msg" class="background-black">Hello World</div>
-
-_('#msg').classToggle('text-red');
-<div id="msg" class="text-red background-black">Hello World</div>
+    _('div').html('Hello World');
+    _('div').htmlAppend('Hello Pizza');
+    // Hello World Hello Pizza
 ```
 
-### Class Bool
+# .htmlPrepend(STRING)
+
+Add HTML to the beginning of an HTML element.
 
 ```
-<div id="msg">Loading...</div>
-
-var isLoggedIn = true;
-_('#msg').cssBool(isLoggedIn, 'text-green', 'text-red');
-<div id="msg" class="text-green">Loading...</div>
-
-var isLoggedIn = false;
-_('#msg').cssBool(isLoggedIn, 'text-green', 'text-red');
-<div id="msg" class="text-red">Loading...</div>
+    _('div').html('Hello World');
+    _('div').htmlPrepend('Hello Pizza');
+    // Hello Pizza Hello World
 ```
 
-### Class Contains
-```
-<div id="msg" class="background-black">Hello World</div>
+# .htmlReplace(STRING, STRING)
 
-_('#msg').classContains('text-red');
-// false
-
-_('#msg').classContains('background-black');
-// true
-```
-
-### Style
-```
-<div id="msg">Hello World</div>
-
-_('#msg').style('color','red');
-<div id="msg" style="color:red">Hello World</div>
-
-_('#msg').style('color');
-// red
-```
-### Size (width & height)
+Replace text within an Element.
 
 ```
-<div id="msg" style="width: 200px;">Hello World</div>
-_('#msg').size().width;
-// 200
-
-<div id="msg" style="width: 200px; padding-left: 10px">Hello World</div>
-_('#msg').size().width;
-// 210
-
-<div id="msg" style="width: 200px; height: 18px; padding-left: 10px">Hello World</div>
-_('#msg').size()
-// {width: 210, height: 18}
+    _('div').html('Hello World');
+    _('div').htmlReplace('World', 'Pizza');
+    // Hello Pizza
 ```
 
-**Note:** width() and height() return the physical size of the element and not the style. This is useful when needing the size of auto sizing elements like grid, img, and other inline-block elements;
+# .htmlFetch(STRING, OBJECT/OPTIONAL)
 
-* Vanilla Js: document.querySelector().offsetHeight;
-* jQuery: $().height;
-* mQuery: _().height;
-
-### Event
-
-<button id="btn">Click Me</button>
-_('#btn').event('click', function(){
-    console.log('You clicked me');
-});
-
-**Note:** This is shorthand for Vanilla Js's addEventListener.
-
-### Update
+Fetches HTML from a url and updates the element.
 
 ```
-msg.html: 'Hello World'
-index.html: '<div id="msg">Loading...</div>'
-_('#msg').update('msg.html');
-<div id="msg">Hello World</div>
+    _('div').htmlFetch('./news');
 ```
 
-### Ajax
-```
-_ajax(URL, CALLBACK, ERROR, START, DONE);
-_ajax('msg', 
-function(text){console.log(text)},
-function(err){console.log('there was an error')},
-function(){console.log('ajax has started')},
-function(){console.log('ajax has ended')});
-```
+# .remove()
 
-### Form Parse
+Removes an element from dom.
 
 ```
-<form id="form">
-	<input name="firstName" value="John">
-	<input name="lastName" value="Doe">
-	<input name="email" value="johndoe@email.com">
-	<div>
-		<input name="password" value="orangeCookies">
-	</div>
-</form>
-_('#form').formParse();
-/*
-{
-	'firstName': 'John',
-	'lastName': 'Doe',
-	'email': 'johndoe@email.com',
-	'password': 'orangeCookies',
-}
-*/
+    _('div').remove();
 ```
+
+# .forEach(CALLBACK)
+
+Loops through query allowing you to access standard attributes. 
+
+```
+    _('ul li').forEach((e, i)=>{
+        e.innerHTML = i;
+    });
+```
+
+# .attr(STRING, STRING/OPTIONAL)
+
+Get and Set Attributes.
+
+```
+    $(div).attr('data-name', 'john doe');
+    $(div).attr('data-name'); // `john doe`
+```
+
+# .attrRemove(STRING)
+
+Removes an Attribute.
+
+```
+    $(div).attrRemove('data-name');
+```
+
+# .attrToggle(STRING)
+
+Toggles and Attribute on and off.
+
+```
+    $(div).attrToggle('disabled');
+```
+
+# .event(STRING, CALLBACK)
+
+Apply Event Listeners to elements.
+
+```
+    $(button).event('click', (event)=>{
+        console.log('You clicked me!');
+    })
+```
+
+# .parseForm()
+
+Parses a form into an object using the Name attributes as keys.
+
+```
+    <form>
+        <label>Username: </label><input name="username"><br>
+        <label>Age: </label><input name="age"><br>
+        <button onclick="$(form).parseForm()"></button>
+    </form>
+    // {username: '', age: '',}
+```
+
