@@ -1,62 +1,56 @@
 // micro framework (mico jquery alternative 4% of size) - drburnett 2021-01-08 (yymmdd)
-var _version = 2.05;
-function _(q){
+var $version = 3;
+function $(q){
 	let l = document.querySelectorAll(q);
 	
 	if(q === 'window'){l[0] = window}
 	else if(q === 'document'){l[0] = document}
 	else if(q === 'body'){l[0] = document.body}
 	
-	return {_nodelist: l, _query: q, _loop: _loop,..._proto}
+	return {$nodelist: l, $query: q, $loop: $loop,...$proto}
 }
-function _loop(f,a){
+function $loop(f,a){
 	var r;
-	this._nodelist.forEach((e,i,l)=>{
+	this.$nodelist.forEach((e,i,l)=>{
 		r = f(e, a, i, l);
 	});
 
 	if(r !== 'undefined' && r !== undefined){return r}
 	else{return this}
 }
-var _proto = {
+var $proto = {
 	size: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			return {width: e.width, height: e.height}
 		},arguments)
 	},
 	click: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			e.click()
 		},arguments)
 	},
 	classAdd: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			e.classList.add(a[0])
 		},arguments)
 	},
 	classRemove: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			e.classList.remove(a[0])
 		},arguments)
 	},
 	classToggle: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			e.classList.toggle(a[0])
 		},arguments)
 	},
 	classContains: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			return e.classList.contains(a[0])
 		},arguments)
 	},
-	classBool: function(){
-		return this._loop((e,a)=>{
-			if(a[0] === true){e.classList.add(a[1])}
-			else{e.classList.add(a[2])}
-		},arguments)
-	},
 	style: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			if(!a[1]){
 				return e.style[a[0]] || false
 			}else{
@@ -65,24 +59,24 @@ var _proto = {
 		},arguments)
 	},
 	html: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			if(a[0] === ''){e.innerHTML = ''}
 			else if(a[0]){e.innerHTML = a[0]}
 			return e.innerHTML
 		},arguments)
 	},
 	htmlAppend: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			e.innerHTML += a[0]
 		},arguments)
 	},
 	htmlPrepend: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			e.innerHTML = a[0] + e.innerHTML
 		},arguments)
 	},
 	htmlReplace: function(){
-		return this._loop((e, a)=>{
+		return this.$loop((e, a)=>{
 			var m = a[0].match(/\/(.*?)\/(.*?)$/);
 			if(m){
 				e.innerHTML = e.innerHTML.replace(new RegExp(m[1], m[2]), a[1])
@@ -91,24 +85,25 @@ var _proto = {
 			}
 		},arguments)
 	},
-	htmlBool: function(){
-		return this._loop((e,a)=>{
-			if(a[0] === true){e.innerHTML = a[1]}
-			else{e.innerHTML = a[2]}
-		},arguments)
+	htmlFetch: function(u, options){
+		fetch(u, option)
+			.then((res)=>{return res.text()})
+			.then((text)=>{
+				this.$query.innerHTML = text
+			})
 	},
 	remove: function(){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			e.remove()
 		},arguments)
 	},
 	forEach: function(){
-		return this._loop((e,a,i,l)=>{
+		return this.$loop((e,a,i,l)=>{
 			a[0](e,i,l)
 		},arguments)
 	},
 	attr: function(){
-		return this._loop((e, a)=>{
+		return this.$loop((e, a)=>{
 			if(!a[1] && a[1] != '' && a[0] == 'value'){return e.value}
 			else if(!a[1] && a[1] != '' && a[0] == 'style'){return e.style.cssText}
 			else if(!a[1] && a[1] != ''){return e.getAttribute(a[0])}
@@ -118,40 +113,25 @@ var _proto = {
 		},arguments)
 	},
 	attrRemove: function(){
-		return this._loop((e, a)=>{
+		return this.$loop((e, a)=>{
 			if(a[0]){e.removeAttribute(a[0])}
 		},arguments)
 	},
 	attrToggle: function(){
-		return this._loop((e, a)=>{
+		return this.$loop((e, a)=>{
 			if(typeof e.getAttribute(a[0]) != 'undefined'){e.removeAttribute(a[0])}
 			else{e.setAttribute(a[0],'')}
 		},arguments)
 	},
 	event: function(){
-		return this._loop((e, a)=>{
+		return this.$loop((e, a)=>{
 			e.addEventListener(a[0], a[1])
 		},arguments)
 	},
-	fetch: function(u, options, action = 0){
-		fetch(u, option)
-			.then((res)=>{return res.text()})
-			.then((text)=>{
-				if(action == 1){this._query.innerHTML+= text}
-				else if(action == 2){this._query.innerHTML = text + this._query.innerHTML}
-				else{this._query.innerHTML = text}
-			})
-	},
-	fetchAppend: function(u, options){
-		this.fetch(u, options, 1)
-	},
-	fetchPrepend: function(u, options){
-		this.fetch(u, options, 2)
-	},
 	parseForm: function(u){
-		return this._loop((e,a)=>{
+		return this.$loop((e,a)=>{
 			var o = {};
-			_(this._query+' [name]')._nodelist.forEach((v)=>{
+			$(this.$query+' [name]').$nodelist.forEach((v)=>{
 				o[v.name] = v.value;
 			});
 			return o
