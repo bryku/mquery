@@ -21,7 +21,7 @@ function $loop(f,a){
 var $proto = {
 	size: function(){
 		return this.$loop((e,a)=>{
-			return {width: e.width, height: e.height}
+			return {width: e.width || e.clientWidth, height: e.height || e.clientHeight}
 		},arguments)
 	},
 	click: function(){
@@ -86,10 +86,10 @@ var $proto = {
 		},arguments)
 	},
 	htmlFetch: function(u, options){
-		fetch(u, option)
+		fetch(u, options)
 			.then((res)=>{return res.text()})
 			.then((text)=>{
-				this.$query.innerHTML = text
+				$(this.$query).html(text);
 			})
 	},
 	remove: function(){
@@ -129,6 +129,7 @@ var $proto = {
 		},arguments)
 	},
 	parseForm: function(u){
+		event.preventDefault();
 		return this.$loop((e,a)=>{
 			var o = {};
 			$(this.$query+' [name]').$nodelist.forEach((v)=>{
